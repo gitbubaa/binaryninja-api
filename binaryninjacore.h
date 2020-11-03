@@ -2713,6 +2713,7 @@ __attribute__ ((format (printf, 1, 2)))
 	BINARYNINJACOREAPI BNDatabase* BNGetFileMetadataDatabase(BNFileMetadata* file);
 
 	// Key value store
+	BINARYNINJACOREAPI BNKeyValueStore* BNCreateKeyValueStore(void);
 	BINARYNINJACOREAPI BNKeyValueStore* BNNewKeyValueStoreReference(BNKeyValueStore* store);
 	BINARYNINJACOREAPI void BNFreeKeyValueStore(BNKeyValueStore* store);
 
