@@ -44,6 +44,12 @@ KeyValueStore::KeyValueStore()
 }
 
 
+KeyValueStore::KeyValueStore(const DataBuffer& buffer)
+{
+	m_object = BNCreateKeyValueStoreFromDataBuffer(buffer.GetBufferObject());
+}
+
+
 KeyValueStore::KeyValueStore(BNKeyValueStore* store)
 {
 	m_object = store;

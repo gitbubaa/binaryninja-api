@@ -833,6 +833,7 @@ __attribute__ ((format (printf, 1, 2)))
 	{
 	public:
 		KeyValueStore();
+		KeyValueStore(const DataBuffer& buffer);
 		KeyValueStore(BNKeyValueStore* store);
 
 		std::vector<std::string> GetKeys() const;
