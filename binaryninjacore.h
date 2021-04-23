@@ -2793,6 +2793,7 @@ __attribute__ ((format (printf, 1, 2)))
 
 	BINARYNINJACOREAPI BNUndoEntry* BNGetUndoEntries(BNFileMetadata* file, size_t* count);
 	BINARYNINJACOREAPI void BNFreeUndoEntries(BNUndoEntry* entries, size_t count);
+	BINARYNINJACOREAPI void BNClearUndoEntries(BNFileMetadata* file);
 
 	BINARYNINJACOREAPI BNUser* BNNewUserReference(BNUser* user);
 	BINARYNINJACOREAPI void BNFreeUser(BNUser* user);

@@ -998,6 +998,7 @@ __attribute__ ((format (printf, 1, 2)))
 
 		std::vector<Ref<User>> GetUsers();
 		std::vector<UndoEntry> GetUndoEntries();
+		void ClearUndoEntries();
 
 		bool OpenProject();
 		void CloseProject();

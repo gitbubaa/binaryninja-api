@@ -347,6 +347,12 @@ vector<UndoEntry> FileMetadata::GetUndoEntries()
 }
 
 
+void FileMetadata::ClearUndoEntries()
+{
+	BNClearUndoEntries(m_object);
+}
+
+
 bool FileMetadata::OpenProject()
 {
 	return BNOpenProject(m_object);
