@@ -893,6 +893,7 @@ __attribute__ ((format (printf, 1, 2)))
 		int64_t WriteSnapshotData(std::vector<int64_t> parents, Ref<BinaryView> file, const std::string& name, const Ref<KeyValueStore>& data, bool autoSave, const std::function<void(size_t, size_t)>& progress);
 		void RemoveSnapshot(int64_t id);
 
+		std::vector<std::string> GetGlobalKeys() const;
 		bool HasGlobal(const std::string& key) const;
 		Json::Value ReadGlobal(const std::string& key) const;
 		void WriteGlobal(const std::string& key, const Json::Value& val);

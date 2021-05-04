@@ -399,6 +399,26 @@ void Database::RemoveSnapshot(int64_t id)
 }
 
 
+std::vector<std::string> Database::GetGlobalKeys() const
+{
+	size_t count;
+	char** value = BNGetDatabaseGlobalKeys(m_object, &count);
+	if (value == nullptr)
+	{
+		throw DatabaseException("BNDatabaseHasGlobal");
+	}
+
+	std::vector<std::string> result;
+	for (size_t i = 0; i < count; i ++)
+	{
+		result.push_back(value[i]);
+	}
+
+	BNFreeStringList(value, count);
+	return result;
+}
+
+
 bool Database::HasGlobal(const std::string& key) const
 {
 	// 0 - false, 1 - true, <0 - exception
