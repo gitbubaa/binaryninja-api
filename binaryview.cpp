@@ -1917,25 +1917,26 @@ vector<TypeReferenceSource> BinaryView::GetTypeReferencesForType(const Qualified
 }
 
 
-vector<ReferenceSource> BinaryView::GetCodeReferencesForTypeField(const QualifiedName& type, uint64_t offset)
+vector<TypeFieldReference> BinaryView::GetCodeReferencesForTypeField(const QualifiedName& type, uint64_t offset)
 {
 	size_t count;
 	BNQualifiedName nameObj = type.GetAPIObject();
-	BNReferenceSource* refs = BNGetCodeReferencesForTypeField(m_object, &nameObj, offset, &count);
+	BNTypeFieldReference* refs = BNGetCodeReferencesForTypeField(m_object, &nameObj, offset, &count);
 	QualifiedName::FreeAPIObject(&nameObj);
 
-	vector<ReferenceSource> result;
+	vector<TypeFieldReference> result;
 	result.reserve(count);
 	for (size_t i = 0; i < count; i++)
 	{
-		ReferenceSource src;
+		TypeFieldReference src;
 		src.func = new Function(BNNewFunctionReference(refs[i].func));
 		src.arch = new CoreArchitecture(refs[i].arch);
 		src.addr = refs[i].addr;
+		src.size = refs[i].size;
 		result.push_back(src);
 	}
 
-	BNFreeCodeReferences(refs, count);
+	BNFreeTypeFieldReferences(refs, count);
 	return result;
 }
 

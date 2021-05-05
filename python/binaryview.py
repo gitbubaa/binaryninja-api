@@ -3505,12 +3505,12 @@ class BinaryView(object):
 
 	def get_code_refs_for_type_field(self, name, offset):
 		"""
-		``get_code_refs_for_type`` returns a list of ReferenceSource objects (xrefs or cross-references) that reference the provided type field.
+		``get_code_refs_for_type`` returns a list of TypeFieldReference objects (xrefs or cross-references) that reference the provided type field.
 
 		:param QualifiedName name: name of type to query for references
 		:param int offset: offset of the field, relative to the type
 		:return: List of References for the given type
-		:rtype: list(ReferenceSource)
+		:rtype: list(TypeFieldReference)
 		:Example:
 
 			>>> bv.get_code_refs_for_type_field('A', 0x8)
@@ -3533,8 +3533,9 @@ class BinaryView(object):
 			else:
 				arch = None
 			addr = refs[i].addr
-			result.append(binaryninja.architecture.ReferenceSource(func, arch, addr))
-		core.BNFreeCodeReferences(refs, count.value)
+			size = refs[i].size
+			result.append(binaryninja.architecture.TypeFieldReference(func, arch, addr, size))
+		core.BNFreeTypeFieldReferences(refs, count.value)
 		return result
 
 

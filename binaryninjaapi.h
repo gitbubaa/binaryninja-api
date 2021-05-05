@@ -1163,6 +1163,14 @@ __attribute__ ((format (printf, 1, 2)))
 		uint64_t addr;
 	};
 
+	struct TypeFieldReference
+	{
+		Ref<Function> func;
+		Ref<Architecture> arch;
+		uint64_t addr;
+		size_t size;
+	};
+
 	struct ILReferenceSource
 	{
 		Ref<Function> func;
@@ -1609,7 +1617,7 @@ __attribute__ ((format (printf, 1, 2)))
 		std::vector<TypeReferenceSource> GetTypeReferencesForType(const QualifiedName& type);
 
 		// References to type field
-		std::vector<ReferenceSource> GetCodeReferencesForTypeField(const QualifiedName& type, uint64_t offset);
+		std::vector<TypeFieldReference> GetCodeReferencesForTypeField(const QualifiedName& type, uint64_t offset);
 		std::vector<uint64_t> GetDataReferencesForTypeField(const QualifiedName& type, uint64_t offset);
 		std::vector<TypeReferenceSource> GetTypeReferencesForTypeField(const QualifiedName& type, uint64_t offset);
 

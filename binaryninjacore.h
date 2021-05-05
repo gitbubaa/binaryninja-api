@@ -1730,6 +1730,14 @@ extern "C"
 		uint64_t addr;
 	};
 
+	struct BNTypeFieldReference
+	{
+		BNFunction* func;
+		BNArchitecture* arch;
+		uint64_t addr;
+		size_t size;
+	};
+
 	struct BNILReferenceSource
 	{
 		BNFunction* func;
@@ -3384,6 +3392,7 @@ __attribute__ ((format (printf, 1, 2)))
 	BINARYNINJACOREAPI BNReferenceSource* BNGetCodeReferencesInRange(BNBinaryView* view, uint64_t addr,
 	                                                                 uint64_t len, size_t* count);
 	BINARYNINJACOREAPI void BNFreeCodeReferences(BNReferenceSource* refs, size_t count);
+	BINARYNINJACOREAPI void BNFreeTypeFieldReferences(BNTypeFieldReference* refs, size_t count);
 	BINARYNINJACOREAPI void BNFreeILReferences(BNILReferenceSource* refs, size_t count);
 	BINARYNINJACOREAPI uint64_t* BNGetCodeReferencesFrom(BNBinaryView* view, BNReferenceSource* src, size_t* count);
 	BINARYNINJACOREAPI uint64_t* BNGetCodeReferencesFromInRange(BNBinaryView* view, BNReferenceSource* src, uint64_t len, size_t* count);
@@ -3404,7 +3413,7 @@ __attribute__ ((format (printf, 1, 2)))
 	BINARYNINJACOREAPI BNTypeReferenceSource* BNGetTypeReferencesForType(BNBinaryView* view, BNQualifiedName* type, size_t* count);
 
 	// References to type field
-	BINARYNINJACOREAPI BNReferenceSource* BNGetCodeReferencesForTypeField(BNBinaryView* view,
+	BINARYNINJACOREAPI BNTypeFieldReference* BNGetCodeReferencesForTypeField(BNBinaryView* view,
 		BNQualifiedName* type, uint64_t offset, size_t* count);
 	BINARYNINJACOREAPI uint64_t* BNGetDataReferencesForTypeField(BNBinaryView* view,
 		BNQualifiedName* type, uint64_t offset, size_t* count);
