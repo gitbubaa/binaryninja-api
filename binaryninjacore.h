@@ -4511,8 +4511,9 @@ __attribute__ ((format (printf, 1, 2)))
 	BINARYNINJACOREAPI BNStructureType BNGetStructureBuilderType(BNStructureBuilder* s);
 
 	BINARYNINJACOREAPI void BNAddStructureBuilderMember(BNStructureBuilder* s, const BNTypeWithConfidence* const type, const char* name);
-	BINARYNINJACOREAPI void BNAddStructureBuilderMemberAtOffset(BNStructureBuilder* s, const BNTypeWithConfidence* const type,
-		const char* name, uint64_t offset);
+	BINARYNINJACOREAPI void BNAddStructureBuilderMemberAtOffset(BNStructureBuilder* s,
+		const BNTypeWithConfidence* const type,	const char* name, uint64_t offset,
+		bool overwriteExisting);
 	BINARYNINJACOREAPI void BNRemoveStructureBuilderMember(BNStructureBuilder* s, size_t idx);
 	BINARYNINJACOREAPI void BNReplaceStructureBuilderMember(BNStructureBuilder* s, size_t idx, const BNTypeWithConfidence* const type,
 		const char* name);

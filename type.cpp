@@ -1919,12 +1919,13 @@ StructureBuilder& StructureBuilder::AddMember(const Confidence<Ref<Type>>& type,
 }
 
 
-StructureBuilder& StructureBuilder::AddMemberAtOffset(const Confidence<Ref<Type>>& type, const string& name, uint64_t offset)
+StructureBuilder& StructureBuilder::AddMemberAtOffset(const Confidence<Ref<Type>>& type,
+	const string& name, uint64_t offset, bool overwriteExisting)
 {
 	BNTypeWithConfidence tc;
 	tc.type = type->GetObject();
 	tc.confidence = type.GetConfidence();
-	BNAddStructureBuilderMemberAtOffset(m_object, &tc, name.c_str(), offset);
+	BNAddStructureBuilderMemberAtOffset(m_object, &tc, name.c_str(), offset, overwriteExisting);
 	return *this;
 }
 

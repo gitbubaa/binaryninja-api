@@ -2864,7 +2864,8 @@ __attribute__ ((format (printf, 1, 2)))
 		StructureBuilder& SetStructureType(BNStructureType type);
 		BNStructureType GetStructureType() const;
 		StructureBuilder& AddMember(const Confidence<Ref<Type>>& type, const std::string& name);
-		StructureBuilder& AddMemberAtOffset(const Confidence<Ref<Type>>& type, const std::string& name, uint64_t offset);
+		StructureBuilder& AddMemberAtOffset(const Confidence<Ref<Type>>& type,
+			const std::string& name, uint64_t offset, bool overwriteExisting = true);
 		StructureBuilder& RemoveMember(size_t idx);
 		StructureBuilder& ReplaceMember(size_t idx, const Confidence<Ref<Type>>& type, const std::string& name);
 	};
