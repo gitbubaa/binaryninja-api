@@ -724,6 +724,42 @@ __attribute__ ((format (printf, 1, 2)))
 	BNMessageBoxButtonResult ShowMessageBox(const std::string& title, const std::string& text,
 		BNMessageBoxButtonSet buttons = OKButtonSet, BNMessageBoxIcon icon = InformationIcon);
 
+	/*!
+	    Split a single progress function into equally sized subparts.
+	    This function takes the original progress function and returns a new function whose signature
+	    is the same but whose output is shortened to correspond to the specified subparts.
+
+	    E.g. If subpart = 0 and subpartCount = 3, this returns a function that calls originalFn and has
+	    all of its progress multiplied by 1/3 and 0/3 added.
+
+	    Internally this works by calling originalFn with total = 1000000 and doing math on the current value
+
+	    \param originalFn Original progress function (usually updates a UI)
+	    \param subpart Index of subpart whose function to return, from 0 to (subpartCount - 1)
+	    \param subpartCount Total number of subparts
+	    \return A function that will call originalFn() within a modified progress region
+	 */
+	std::function<bool(size_t, size_t)> SplitProgress(std::function<bool(size_t, size_t)> originalFn, size_t subpart, size_t subpartCount);
+
+
+	/*!
+	    Split a single progress function into subparts.
+	    This function takes the original progress function and returns a new function whose signature
+	    is the same but whose output is shortened to correspond to the specified subparts.
+
+	    The length of a subpart is proportional to the sum of all the weights.
+	    E.g. If subpart = 1 and subpartWeights = { 0.25, 0.5, 0.25 }, this will return a function that calls
+	    originalFn and maps its progress to the range [0.25, 0.75]
+
+	    Internally this works by calling originalFn with total = 1000000 and doing math on the current value
+
+	    \param originalFn Original progress function (usually updates a UI)
+	    \param subpart Index of subpart whose function to return, from 0 to (subpartWeights.size() - 1)
+	    \param subpartWeights Weights of subparts, described above
+	    \return A function that will call originalFn() within a modified progress region
+	 */
+	std::function<bool(size_t, size_t)> SplitProgress(std::function<bool(size_t, size_t)> originalFn, size_t subpart, std::vector<double> subpartWeights);
+
 	std::string GetUniqueIdentifierString();
 
 	std::map<std::string, uint64_t> GetMemoryUsageInfo();
