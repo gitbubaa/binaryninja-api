@@ -2089,7 +2089,7 @@ std::map<uint64_t, std::vector<size_t>> BinaryView::GetAllFieldsReferencedByCode
 	std::map<uint64_t, std::vector<size_t>> result;
 	for (size_t i = 0; i < count; i++)
 	{
-		auto sizes = result[fields[i].offset];
+		auto& sizes = result[fields[i].offset];
 		for (size_t j = 0; j < fields[i].count; j++)
 		{
 			sizes.push_back(fields[i].sizes[j]);
