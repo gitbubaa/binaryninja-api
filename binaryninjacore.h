@@ -1747,6 +1747,13 @@ extern "C"
 		size_t exprId;
 	};
 
+	struct BNTypeFieldReferenceSizeInfo
+	{
+		uint64_t offset;
+		size_t* sizes;
+		size_t count;
+	};
+
 	struct BNVariableReferenceSource
 	{
 		BNVariable var;
@@ -3406,6 +3413,8 @@ __attribute__ ((format (printf, 1, 2)))
 	BINARYNINJACOREAPI void BNFreeDataReferences(uint64_t* refs);
 
 	BINARYNINJACOREAPI void BNFreeTypeReferences(BNTypeReferenceSource* refs, size_t count);
+	BINARYNINJACOREAPI void BNFreeTypeFieldReferenceSizeInfo(BNTypeFieldReferenceSizeInfo* refs,
+		size_t count);
 
 	// References to type
 	BINARYNINJACOREAPI BNReferenceSource* BNGetCodeReferencesForType(BNBinaryView* view, BNQualifiedName* type, size_t* count);
@@ -3427,6 +3436,8 @@ __attribute__ ((format (printf, 1, 2)))
 
 	BINARYNINJACOREAPI uint64_t* BNGetAllFieldsReferencedByCode(BNBinaryView* view,
 		BNQualifiedName* type, size_t* count);
+	BINARYNINJACOREAPI BNTypeFieldReferenceSizeInfo* BNGetAllFieldsReferencedByCodeWithSize(
+		BNBinaryView* view, BNQualifiedName* type, size_t* count);
 
 	BINARYNINJACOREAPI void BNRegisterGlobalFunctionRecognizer(BNFunctionRecognizer* rec);
 

@@ -2078,6 +2078,29 @@ vector<uint64_t> BinaryView::GetAllFieldsReferencedByCode(const QualifiedName& t
 }
 
 
+std::map<uint64_t, std::vector<size_t>> BinaryView::GetAllFieldsReferencedByCodeWithSize(
+	const QualifiedName& type)
+{
+	size_t count;
+	BNQualifiedName nameObj = type.GetAPIObject();
+	BNTypeFieldReferenceSizeInfo* fields = BNGetAllFieldsReferencedByCodeWithSize(m_object,
+		&nameObj, &count);
+
+	std::map<uint64_t, std::vector<size_t>> result;
+	for (size_t i = 0; i < count; i++)
+	{
+		auto sizes = result[fields[i].offset];
+		for (size_t j = 0; j < fields[i].count; j++)
+		{
+			sizes.push_back(fields[i].sizes[j]);
+		}
+	}
+
+	BNFreeTypeFieldReferenceSizeInfo(fields, count);
+	return result;
+}
+
+
 vector<uint64_t> BinaryView::GetCallees(ReferenceSource callSite)
 {
 	size_t count;

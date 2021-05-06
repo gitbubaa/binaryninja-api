@@ -3757,6 +3757,34 @@ class BinaryView(object):
 		core.BNFreeDataReferences(refs, count.value)
 		return result
 
+	def get_all_type_fields_referenced_by_code_with_size(self, name):
+		"""
+		``get_all_type_fields_referenced_by_code_with_size`` returns a map from field offset to the
+		size of the code accesses to it.
+
+		:param QualifiedName name: name of type to query for references
+		:return: A map from field offset to the	size of the code accesses to it
+		:rtype: map
+		:Example:
+
+			>>> bv.get_all_type_fields_referenced_by_code('A')
+			['<type D, offset 0x8, direct>', '<type C, offset 0x10, indirect>']
+			>>>
+
+		"""
+		count = ctypes.c_ulonglong(0)
+		name = types.QualifiedName(name)._get_core_struct()
+		refs = core.BNGetAllFieldsReferencedByCodeWithSize(self.handle, name, count)
+
+		result = {}
+		for i in range(0, count.value):
+			result[refs[i].offset] = []
+			for j in range(0, refs[i].count):
+				result[refs[i].offset].append(refs[i].sizes[j])
+
+		core.BNFreeTypeFieldReferenceSizeInfo(refs, count.value)
+		return result
+
 	def get_callers(self, addr):
 		"""
 		``get_callers`` returns a list of ReferenceSource objects (xrefs or cross-references) that call the provided virtual address.
