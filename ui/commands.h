@@ -20,7 +20,7 @@ bool BINARYNINJAUIAPI askForNewType(QWidget* parent, BinaryViewRef data, Functio
 bool BINARYNINJAUIAPI inputNewType(QWidget* parent, BinaryViewRef data, FunctionRef currentFunction,
 	uint64_t currentAddr, size_t selectionSize, HighlightTokenState& highlight);
 bool BINARYNINJAUIAPI createInferredMember(QWidget* parent, BinaryViewRef data, HighlightTokenState& highlight,
-	FunctionRef func, BNFunctionGraphType type);
+	FunctionRef func, BNFunctionGraphType ilType);
 
 bool BINARYNINJAUIAPI inputPossibleValueSet(QWidget* parent, BinaryViewRef data, FunctionRef currentFunction,
 	HighlightTokenState& highlight, uint64_t defSiteAddress, size_t ilInstructionIndex = BN_INVALID_EXPR);
