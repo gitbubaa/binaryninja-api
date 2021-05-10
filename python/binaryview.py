@@ -6078,7 +6078,7 @@ class BinaryView(object):
 			raise KeyError(key)
 		return metadata.Metadata(handle=md_handle).value
 
-	def store_metadata(self, key, md):
+	def store_metadata(self, key, md, user = True):
 		"""
 		`store_metadata` stores an object for the given key in the current BinaryView. Objects stored using
 		`store_metadata` can be retrieved when the database is reopened. Objects stored are not arbitrary python
@@ -6088,6 +6088,8 @@ class BinaryView(object):
 
 		:param str key: key value to associate the Metadata object with
 		:param Varies md: object to store.
+		:param bool user: whether the metadata is a user metadata. Only those automatically generated metadata should have this set to false. Non-user (auto) metadata is not saved into
+		the database and is presumably re-genereated when re-opening the database.
 		:rtype: None
 		:Example:
 
@@ -6103,7 +6105,7 @@ class BinaryView(object):
 		"""
 		if not isinstance(md, metadata.Metadata):
 			md = metadata.Metadata(md)
-		core.BNBinaryViewStoreMetadata(self.handle, key, md.handle)
+		core.BNBinaryViewStoreMetadata(self.handle, key, md.handle, user)
 
 	def remove_metadata(self, key):
 		"""
