@@ -1409,6 +1409,8 @@ __attribute__ ((format (printf, 1, 2)))
 	struct QualifiedNameAndType;
 	struct PossibleValueSet;
 	class Metadata;
+	class Structure;
+
 	class QueryMetadataException: public std::exception
 	{
 		const std::string m_error;
@@ -1630,6 +1632,8 @@ __attribute__ ((format (printf, 1, 2)))
 		std::vector<uint64_t> GetAllFieldsReferencedByCode(const QualifiedName& type);
 		std::map<uint64_t, std::vector<size_t>> GetAllFieldsReferencedByCodeWithSize(
 			const QualifiedName& type);
+
+		Ref<Structure> CreateStructureBasedOnFieldAccesses(const QualifiedName& type);
 
 		std::vector<uint64_t> GetCallees(ReferenceSource addr);
 		std::vector<ReferenceSource> GetCallers(uint64_t addr);

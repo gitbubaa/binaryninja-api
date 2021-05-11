@@ -2102,6 +2102,14 @@ std::map<uint64_t, std::vector<size_t>> BinaryView::GetAllFieldsReferencedByCode
 }
 
 
+Ref<Structure> BinaryView::CreateStructureBasedOnFieldAccesses(const QualifiedName& type)
+{
+	BNQualifiedName typeObj = type.GetAPIObject();
+	BNStructure* result = BNCreateStructureBasedOnFieldAccesses(m_object, &typeObj);
+	return new Structure(result);
+}
+
+
 vector<uint64_t> BinaryView::GetCallees(ReferenceSource callSite)
 {
 	size_t count;
