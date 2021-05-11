@@ -1736,6 +1736,7 @@ extern "C"
 		BNArchitecture* arch;
 		uint64_t addr;
 		size_t size;
+		size_t instrIndex;
 	};
 
 	struct BNILReferenceSource

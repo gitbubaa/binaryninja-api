@@ -3534,7 +3534,9 @@ class BinaryView(object):
 				arch = None
 			addr = refs[i].addr
 			size = refs[i].size
-			result.append(binaryninja.architecture.TypeFieldReference(func, arch, addr, size))
+			instrIndex = refs[i].instrIndex
+			result.append(binaryninja.architecture.TypeFieldReference(\
+				func, arch, addr, size, instrIndex))
 		core.BNFreeTypeFieldReferences(refs, count.value)
 		return result
 
