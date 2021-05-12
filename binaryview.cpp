@@ -1933,7 +1933,6 @@ vector<TypeFieldReference> BinaryView::GetCodeReferencesForTypeField(const Quali
 		src.arch = new CoreArchitecture(refs[i].arch);
 		src.addr = refs[i].addr;
 		src.size = refs[i].size;
-		src.instrIndex = refs[i].instrIndex;
 		result.push_back(src);
 	}
 

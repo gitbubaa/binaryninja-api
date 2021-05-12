@@ -2811,26 +2811,23 @@ class ReferenceSource(object):
 
 
 class TypeFieldReference(object):
-	def __init__(self, func, arch, addr, size, instr_index):
+	def __init__(self, func, arch, addr, size):
 		self._function = func
 		self._arch = arch
 		self._address = addr
 		self._size = size
-		self._instr_index = instr_index
 
 	def __repr__(self):
 		if self._arch:
-			return "<ref: %s@%#x, size: %#x, mlil @%d>" %\
-				(self._arch.name, self._address, self._size, self._instr_index)
+			return "<ref: %s@%#x, size: %#x>" % (self._arch.name, self._address, self._size)
 		else:
-			return "<ref: %#x, size: %#x, mlil @%d>" %\
-				(self._address, self._size, self._instr_index)
+			return "<ref: %#x, size: %#x>" % (self._address, self._size)
 
 	def __eq__(self, other):
 		if not isinstance(other, self.__class__):
 			return NotImplemented
-		return (self.function, self.arch, self.address, self._size, self._instr_index) ==\
-			(other.address, other.function, other.arch, other.size, other.instr_index)
+		return (self.function, self.arch, self.address, self._size) ==\
+			(other.address, other.function, other.arch, other.size)
 
 	def __ne__(self, other):
 		if not isinstance(other, self.__class__):
@@ -2844,10 +2841,6 @@ class TypeFieldReference(object):
 			return True
 		elif self.address > other.address:
 			return False
-		if self.instr_index < other.instr_index:
-			return True
-		elif self.instr_index > other.instr_index:
-			return False
 		else:
 			return self.size < other.size
 
@@ -2857,10 +2850,6 @@ class TypeFieldReference(object):
 		if self.address > other.address:
 			return True
 		elif self.address < other.address:
-			return False
-		if self.instr_index > other.instr_index:
-			return True
-		elif self.instr_index < other.instr_index:
 			return False
 		else:
 			return self.size > other.size
@@ -2886,7 +2875,7 @@ class TypeFieldReference(object):
 			return self.size <= other.size
 
 	def __hash__(self):
-		return hash((self._function, self._arch, self._address, self._size, self._instr_index))
+		return hash((self._function, self._arch, self._address, self._size))
 
 	@property
 	def function(self):
@@ -2921,14 +2910,5 @@ class TypeFieldReference(object):
 		return self._size
 
 	@size.setter
-	def size(self, value):
+	def address(self, value):
 		self._size = value
-
-	@property
-	def instr_index(self):
-		""" """
-		return self._instr_index
-
-	@size.setter
-	def instr_index(self, value):
-		self._instr_index = value

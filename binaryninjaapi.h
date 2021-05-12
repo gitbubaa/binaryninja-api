@@ -1169,7 +1169,6 @@ __attribute__ ((format (printf, 1, 2)))
 		Ref<Architecture> arch;
 		uint64_t addr;
 		size_t size;
-		size_t instrIndex;
 	};
 
 	struct ILReferenceSource
