@@ -2682,6 +2682,9 @@ __attribute__ ((format (printf, 1, 2)))
 
 		bool AddTypeMemberTokens(BinaryView* data, std::vector<InstructionTextToken>& tokens, int64_t offset,
 			std::vector<std::string>& nameList, size_t size = 0, bool indirect = false);
+
+		Ref<Structure> CreateStructureFromOffsetAccess(const Ref<BinaryView>& view,
+			const QualifiedName& type);
 	};
 
 	class TypeBuilder

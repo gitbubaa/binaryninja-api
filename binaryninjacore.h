@@ -4539,6 +4539,9 @@ __attribute__ ((format (printf, 1, 2)))
 	BINARYNINJACOREAPI void BNRemoveEnumerationBuilderMember(BNEnumerationBuilder* e, size_t idx);
 	BINARYNINJACOREAPI void BNReplaceEnumerationBuilderMember(BNEnumerationBuilder* e, size_t idx, const char* name, uint64_t value);
 
+	BINARYNINJACOREAPI BNStructure* BNCreateStructureFromOffsetAccess(BNType* type,
+		BNBinaryView* view, BNQualifiedName* name);
+
 	// Source code processing
 	BINARYNINJACOREAPI bool BNPreprocessSource(const char* source, const char* fileName, char** output, char** errors,
 		const char** includeDirs, size_t includeDirCount);
