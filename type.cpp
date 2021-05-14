@@ -1004,8 +1004,8 @@ Ref<Structure> Type::CreateStructureFromOffsetAccess(const Ref<BinaryView>& view
 	const QualifiedName& type)
 {
 	BNQualifiedName typeObj = type.GetAPIObject();
-	BNStructure* result = BNCreateStructureFromOffsetAccess(m_object,
-		view ? view->GetObject() : nullptr, &typeObj);
+	BNStructure* result = BNCreateStructureFromOffsetAccess(view ? view->GetObject() : nullptr,
+		&typeObj);
 	return new Structure(result);
 }
 
