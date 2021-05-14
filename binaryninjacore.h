@@ -4540,7 +4540,7 @@ __attribute__ ((format (printf, 1, 2)))
 	BINARYNINJACOREAPI void BNReplaceEnumerationBuilderMember(BNEnumerationBuilder* e, size_t idx, const char* name, uint64_t value);
 
 	BINARYNINJACOREAPI BNStructure* BNCreateStructureFromOffsetAccess(BNBinaryView* view,
-		BNQualifiedName* name);
+		BNQualifiedName* name, bool* newMember);
 
 	// Source code processing
 	BINARYNINJACOREAPI bool BNPreprocessSource(const char* source, const char* fileName, char** output, char** errors,

@@ -1001,11 +1001,11 @@ bool Type::AddTypeMemberTokens(BinaryView* data, vector<InstructionTextToken>& t
 
 
 Ref<Structure> Type::CreateStructureFromOffsetAccess(const Ref<BinaryView>& view,
-	const QualifiedName& type)
+	const QualifiedName& type, bool* newMemberAdded)
 {
 	BNQualifiedName typeObj = type.GetAPIObject();
 	BNStructure* result = BNCreateStructureFromOffsetAccess(view ? view->GetObject() : nullptr,
-		&typeObj);
+		&typeObj, newMemberAdded);
 	return new Structure(result);
 }
 

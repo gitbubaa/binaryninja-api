@@ -2684,7 +2684,7 @@ __attribute__ ((format (printf, 1, 2)))
 			std::vector<std::string>& nameList, size_t size = 0, bool indirect = false);
 
 		static Ref<Structure> CreateStructureFromOffsetAccess(const Ref<BinaryView>& view,
-			const QualifiedName& type);
+			const QualifiedName& type, bool* newMemberAdded);
 	};
 
 	class TypeBuilder
