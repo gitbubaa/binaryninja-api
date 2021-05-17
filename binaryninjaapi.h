@@ -2685,6 +2685,8 @@ __attribute__ ((format (printf, 1, 2)))
 
 		static Ref<Structure> CreateStructureFromOffsetAccess(const Ref<BinaryView>& view,
 			const QualifiedName& type, bool* newMemberAdded);
+
+		static std::string GetSizeSuffix(size_t size);
 	};
 
 	class TypeBuilder

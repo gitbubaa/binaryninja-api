@@ -19,6 +19,7 @@
 // IN THE SOFTWARE.
 
 #include "binaryninjaapi.h"
+#include <inttypes.h>
 
 using namespace BinaryNinja;
 using namespace std;
@@ -1007,6 +1008,33 @@ Ref<Structure> Type::CreateStructureFromOffsetAccess(const Ref<BinaryView>& view
 	BNStructure* result = BNCreateStructureFromOffsetAccess(view ? view->GetObject() : nullptr,
 		&typeObj, newMemberAdded);
 	return new Structure(result);
+}
+
+
+string Type::GetSizeSuffix(size_t size)
+{
+	char sizeStr[32];
+
+	switch (size)
+	{
+	case 0:
+		return "";
+	case 1:
+		return ".b";
+	case 2:
+		return ".w";
+	case 4:
+		return ".d";
+	case 8:
+		return ".q";
+	case 10:
+		return ".t";
+	case 16:
+		return ".o";
+	default:
+		sprintf(sizeStr, ".%" PRIuPTR, size);
+		return sizeStr;
+	}
 }
 
 
