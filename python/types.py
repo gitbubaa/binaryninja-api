@@ -965,6 +965,18 @@ class Type(object):
 	def get_auto_demangled_type_id_source(self):
 		return core.BNGetAutoDemangledTypeIdSource()
 
+	@classmethod
+	def create_structure_from_offset_access(self, bv, name):
+		newMemberAdded = ctypes.c_bool(False)
+		name = QualifiedName(name)._get_core_struct()
+		if not isinstance(bv, binaryninja.binaryview.BinaryView):
+			return None
+
+		struct = core.BNCreateStructureFromOffsetAccess(bv.handle, name, newMemberAdded)
+		if struct is None:
+			return None
+		return Structure(struct)
+
 	def with_confidence(self, confidence):
 		return Type(handle = core.BNNewTypeReference(self.handle), platform = self._platform, confidence = confidence)
 
