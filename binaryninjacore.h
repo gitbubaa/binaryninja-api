@@ -4331,9 +4331,6 @@ __attribute__ ((format (printf, 1, 2)))
 	BINARYNINJACOREAPI void BNBinaryViewExportTypeToTypeLibrary(BNBinaryView* view, BNTypeLibrary* lib, BNQualifiedName* name, BNType* type);
 	BINARYNINJACOREAPI void BNBinaryViewExportObjectToTypeLibrary(BNBinaryView* view, BNTypeLibrary* lib, BNQualifiedName* name, BNType* type);
 
-	BINARYNINJACOREAPI BNStructure* BNCreateStructureBasedOnFieldAccesses(BNBinaryView* view,
-		BNQualifiedName* name);
-
 	// Types
 	BINARYNINJACOREAPI bool BNTypesEqual(BNType* a, BNType* b);
 	BINARYNINJACOREAPI bool BNTypesNotEqual(BNType* a, BNType* b);
