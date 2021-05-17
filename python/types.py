@@ -1464,7 +1464,7 @@ class Structure(object):
 		tc.confidence = t.confidence
 		core.BNAddStructureBuilderMember(self._handle, tc, name)
 
-	def insert(self, offset, t, name = "", overwriteExisting = False):
+	def insert(self, offset, t, name = "", overwriteExisting = True):
 		if not self._mutable:
 			raise AttributeError("Finalized Structure object is immutable, use mutable_copy()")
 		tc = core.BNTypeWithConfidence()
