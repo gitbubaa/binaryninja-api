@@ -1947,12 +1947,12 @@ StructureBuilder& StructureBuilder::RemoveMember(size_t idx)
 }
 
 
-StructureBuilder& StructureBuilder::ReplaceMember(size_t idx, const Confidence<Ref<Type>>& type, const std::string& name)
+StructureBuilder& StructureBuilder::ReplaceMember(size_t idx, const Confidence<Ref<Type>>& type, const std::string& name, bool overwriteExisting)
 {
 	BNTypeWithConfidence tc;
 	tc.type = type->GetObject();
 	tc.confidence = type.GetConfidence();
-	BNReplaceStructureBuilderMember(m_object, idx, &tc, name.c_str());
+	BNReplaceStructureBuilderMember(m_object, idx, &tc, name.c_str(), overwriteExisting);
 	return *this;
 }
 

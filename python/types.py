@@ -1477,13 +1477,13 @@ class Structure(object):
 			raise AttributeError("Finalized Structure object is immutable, use mutable_copy()")
 		core.BNRemoveStructureBuilderMember(self._handle, i)
 
-	def replace(self, i, t, name = ""):
+	def replace(self, i, t, name = "", overwriteExisting = True):
 		if not self._mutable:
 			raise AttributeError("Finalized Structure object is immutable, use mutable_copy()")
 		tc = core.BNTypeWithConfidence()
 		tc.type = t.handle
 		tc.confidence = t.confidence
-		core.BNReplaceStructureBuilderMember(self._handle, i, tc, name)
+		core.BNReplaceStructureBuilderMember(self._handle, i, tc, name, overwriteExisting)
 
 	def mutable_copy(self):
 		if self._mutable:
