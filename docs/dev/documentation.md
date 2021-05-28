@@ -40,7 +40,7 @@ Follow the `README.md` in `api-docs/cppdocs/`
 Changing documentation for the API itself is fairly straight forward. Use [doxygen style comment blocks](https://www.doxygen.nl/manual/docblocks.html) in C++ and C, and [restructured text blocks](http://thomas-cokelaer.info/tutorials/sphinx/docstring_python.html) for python for the source. The user documentation is located in the `docs` folder and the API documentation is generated from the config in the `api-docs` folder.
 
 !!! Tip "Tip"
-    When updating the [User Documentation], the `mkdocs serve` will serve the webpages and watch for changes.
+    When updating the [User Documentation], the `mkdocs serve` command will serve the webpages and watch for changes.
 
 [contribution license agreement]: https://binary.ninja/cla.pdf
 [Vector 35]: https://vector35.com/
