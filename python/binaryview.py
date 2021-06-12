@@ -6241,6 +6241,9 @@ class BinaryReader(object):
 			core.BNSetBinaryReaderEndianness(self.handle, view.endianness)
 		else:
 			core.BNSetBinaryReaderEndianness(self.handle, endian)
+		# Take the Reader to the current offset of the View
+		# Useful for the python console
+		core.BNSeekBinaryReader(self.handle, view.offset)
 
 	def __del__(self):
 		core.BNFreeBinaryReader(self.handle)
