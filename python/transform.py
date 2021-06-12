@@ -134,6 +134,18 @@ class Transform(with_metaclass(_TransformMetaClass, object)):
 		>>> xor.encode("Original Data", {'key':'XORKEY'})
 		>>> rawhex.encode(xor.encode("Original Data", {'key':'XORKEY'}))
 		b'173d3b2c2c373923720f242d39'
+
+	Additionally, some `Tansform` implementations only have an `encode` or `decode` method, not both. `decode` methods correspond to 
+	the "Paste From" context menu option, and `encode` methods correspond to the "Copy as" option. The integer lists e.g. 
+	`IntList08`, only have an `decode` method.  
+
+	    >>> morph = Transform['IntList08']
+		>>> morph.decode('1,2')
+		b'\x01\x02'
+		>>> morph.decode('1 2')
+		b'\x01\x02'
+		>>> morph.decode('1, 2')
+		b'\x01\x02'
 	"""
 	transform_type = None
 	name = None
